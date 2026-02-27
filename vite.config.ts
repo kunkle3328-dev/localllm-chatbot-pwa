@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { viteSingleFile } from 'vite-plugin-singlefile';
 
+
 export default defineConfig(({ mode }) => {
   // Load BOTH VITE_* and non-prefixed keys (for compatibility with your existing .env.local)
   const env = loadEnv(mode, '.', '');
@@ -90,6 +91,9 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    export default defineConfig({
+  plugins: [react()],
+  base: "/", // ✅ Vercel
     build: {
       // Helps mobile memory + produces smaller chunks (but singlefile will inline them)
       target: 'es2020',
